@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Todo List{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="{% url 'index' %}"  class="nav-link">Главная</a>
+                <a href="{% url 'add_task' %}" class="nav-link">Добавить задачу</a>
+            </nav>
+        </header>
+        <hr>
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                          <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
